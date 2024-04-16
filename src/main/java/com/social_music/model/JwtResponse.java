@@ -1,56 +1,24 @@
 package com.social_music.model;
 
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
+@Data
 public class JwtResponse {
     private Long id;
     private String token;
     private String type = "Bearer";
     private String username;
-    private Collection<? extends GrantedAuthority> roles;
+    private String name;
+    private final Collection<? extends GrantedAuthority> authorities;
 
-    public JwtResponse(String accessToken, Long id, String username, Collection<? extends GrantedAuthority> roles) {
-        this.token = accessToken;
-        this.username = username;
-        this.roles = roles;
+    public JwtResponse(Long id, String token, String username, String name, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getAccessToken() {
-        return token;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.token = accessToken;
-    }
-
-    public String getTokenType() {
-        return type;
-    }
-
-    public void setTokenType(String tokenType) {
-        this.type = tokenType;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
+        this.token = token;
         this.username = username;
-    }
-
-    public Collection<? extends GrantedAuthority> getRoles() {
-        return roles;
+        this.name = name;
+        this.authorities = authorities;
     }
 }
