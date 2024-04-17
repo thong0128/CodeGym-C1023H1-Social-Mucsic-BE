@@ -51,6 +51,7 @@ public class AppUserServiceImpl implements UserDetailsService, GeneralService<Ap
         AppUser appUser = new AppUser();
         appUser.setUsername(user.getUsername());
         appUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        appUser.setConfirmPassword(user.getConfirmPassword());
         appUser.setPhoneNumber(user.getPhoneNumber());
         List<Long> rolesIDs = Arrays.asList(appRoleRepository.findOneByName(RoleType.ROLE_USER.getName()).getId());
         Set<AppRole> roles = appRoleRepository.findAllByIdIn(rolesIDs);

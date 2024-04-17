@@ -1,10 +1,7 @@
 package com.social_music.controller;
 
 import com.social_music.model.JwtResponse;
-import com.social_music.model.AppRole;
 import com.social_music.model.AppUser;
-import com.social_music.service.AppRoleService;
-import com.social_music.service.AppUserService;
 import com.social_music.service.impl.AppUserServiceImpl;
 import com.social_music.service.impl.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/auth")
+@RequestMapping("")
 public class UserController {
 
     @Autowired
@@ -49,14 +46,12 @@ public class UserController {
     static public Long getId(){
         return current_id;
     }
-    @GetMapping
+    @GetMapping("/users")
     public ResponseEntity<Iterable<AppUser>> listUsers() {
-
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
-
     }
 
-    @PostMapping("/create")
+    @PostMapping("/users/create")
     public ResponseEntity<AppUser> createUser(@RequestBody AppUser user){
         return new ResponseEntity<>(userService.save(user), HttpStatus.CREATED);
     }
