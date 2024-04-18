@@ -16,4 +16,6 @@ public class Song {
     private String author;
     private String singer;
     private String album;
+    @ManyToOne
+    private SongTypes songTypes;
 }

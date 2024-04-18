@@ -23,7 +23,12 @@ public class SongController {
         return new ResponseEntity<>(songService.findById(id),HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity<?> createSong(@RequestBody Song song) {
+    public ResponseEntity<?> create(@RequestBody Song song) {
         return new ResponseEntity<>(songService.save(song),HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<?> update(@RequestBody Song song) {
+        return new ResponseEntity<>(songService.save(song),HttpStatus.OK);
     }
 }
