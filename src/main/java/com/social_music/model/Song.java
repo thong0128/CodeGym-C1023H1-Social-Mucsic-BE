@@ -15,13 +15,5 @@ public class Song {
     private String song_url;
     private String author;
     private String singer;
-    private String genre;
     private String album;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    @ManyToOne
-    @JoinColumn(name="songType_id")
-    private SongTypes songTypes;
-
 }

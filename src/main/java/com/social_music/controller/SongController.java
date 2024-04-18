@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @RequestMapping("/songs")
 public class SongController {
     @Autowired
@@ -19,7 +18,7 @@ public class SongController {
     public ResponseEntity<Iterable<Song>> findAll() {
         return new ResponseEntity<>(songService.findAll(), HttpStatus.OK);
     }
-    @GetMapping("/songs/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Optional<Song>> findOne(@PathVariable Long id) {
         return new ResponseEntity<>(songService.findById(id),HttpStatus.OK);
     }
@@ -27,5 +26,4 @@ public class SongController {
     public ResponseEntity<?> createSong(@RequestBody Song song) {
         return new ResponseEntity<>(songService.save(song),HttpStatus.CREATED);
     }
-
 }

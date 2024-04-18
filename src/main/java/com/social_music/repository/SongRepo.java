@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SongRepo extends CrudRepository<Song, Long> {
-    Iterable<Song> findSongByUserId(Long user_id);
 }
