@@ -18,6 +18,9 @@ public class AppUser {
     private String password;
     private String confirmPassword;
     private String phoneNumber;
+    private String avatar;
+    private String address;
+    private String email;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<AppRole> roles;
 

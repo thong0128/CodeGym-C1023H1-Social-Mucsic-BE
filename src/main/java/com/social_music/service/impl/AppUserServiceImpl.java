@@ -56,10 +56,12 @@ public class AppUserServiceImpl implements UserDetailsService, GeneralService<Ap
         appUser.setPassword(passwordEncoder.encode(user.getPassword()));
         appUser.setConfirmPassword(user.getConfirmPassword());
         appUser.setPhoneNumber(user.getPhoneNumber());
+        appUser.setAddress(user.getAddress());
+        appUser.setAvatar(user.getAvatar());
+        appUser.setEmail(user.getEmail());
         List<Long> rolesIDs = Arrays.asList(appRoleRepository.findOneByName(RoleType.ROLE_USER.getName()).getId());
         Set<AppRole> roles = appRoleRepository.findAllByIdIn(rolesIDs);
         appUser.setRoles(roles);
-        appUserRepo.save(appUser);
         return appUserRepo.save(appUser);
     }
 
