@@ -60,6 +60,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                                 .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                                 .requestMatchers("/login**").permitAll()
+                                .requestMatchers("/users/**").permitAll()
                                 .requestMatchers("/users/**").hasAnyAuthority("ROLE_USER")
                                 .requestMatchers(HttpMethod.PUT,"/users/update/pass/**").hasAnyAuthority("ROLE_USER")
                                 .requestMatchers(HttpMethod.PUT,"/users/update/infor/**").hasAnyAuthority("ROLE_USER")

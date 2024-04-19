@@ -71,8 +71,10 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         AppUser newUser = userOptional.get();
+
         newUser.setPassword(appUser.getPassword());
         newUser.setConfirmPassword(appUser.getConfirmPassword());
+        newUser.setOldPassword(appUser.getPassword());
         userService.save(newUser);
         return new ResponseEntity<>(newUser, HttpStatus.OK);
     }
@@ -83,6 +85,7 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         AppUser newUser = userOptional.get();
+
         newUser.setUsername(appUser.getUsername());
         newUser.setPhoneNumber(appUser.getPhoneNumber());
         newUser.setAvatar(appUser.getAvatar());

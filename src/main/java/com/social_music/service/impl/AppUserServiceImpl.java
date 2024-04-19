@@ -52,6 +52,11 @@ public class AppUserServiceImpl implements UserDetailsService, GeneralService<Ap
         if (user.getId() != null){
             appUser.setId(user.getId());
         }
+        if (user.getOldPassword() == null){
+            appUser.setOldPassword(user.getPassword());
+        } else {
+            appUser.setOldPassword(user.getOldPassword());
+        }
         appUser.setUsername(user.getUsername());
         appUser.setPassword(passwordEncoder.encode(user.getPassword()));
         appUser.setConfirmPassword(user.getConfirmPassword());

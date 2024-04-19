@@ -16,6 +16,7 @@ public class AppUser {
     private Long id;
     private String username;
     private String password;
+    private String oldPassword;
     private String confirmPassword;
     private String phoneNumber;
     private String avatar;
