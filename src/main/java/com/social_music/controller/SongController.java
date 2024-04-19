@@ -14,7 +14,7 @@ import java.util.Optional;
 public class SongController {
     @Autowired
     private SongServiceImpl songService;
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<Iterable<Song>> findAll() {
         return new ResponseEntity<>(songService.findAll(), HttpStatus.OK);
     }
@@ -22,12 +22,12 @@ public class SongController {
     public ResponseEntity<Optional<Song>> findOne(@PathVariable Long id) {
         return new ResponseEntity<>(songService.findById(id),HttpStatus.OK);
     }
-    @PostMapping
+    @PostMapping("/user/create")
     public ResponseEntity<?> create(@RequestBody Song song) {
         return new ResponseEntity<>(songService.save(song),HttpStatus.CREATED);
     }
 
-    @PutMapping
+    @PutMapping("/user/update")
     public ResponseEntity<?> update(@RequestBody Song song) {
         return new ResponseEntity<>(songService.save(song),HttpStatus.OK);
     }
