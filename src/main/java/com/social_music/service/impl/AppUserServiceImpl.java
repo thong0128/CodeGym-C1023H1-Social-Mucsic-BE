@@ -49,6 +49,9 @@ public class AppUserServiceImpl implements UserDetailsService, GeneralService<Ap
     @Override
     public AppUser save(AppUser user) {
         AppUser appUser = new AppUser();
+        if (user.getId() != null){
+            appUser.setId(user.getId());
+        }
         appUser.setUsername(user.getUsername());
         appUser.setPassword(passwordEncoder.encode(user.getPassword()));
         appUser.setConfirmPassword(user.getConfirmPassword());
@@ -64,5 +67,6 @@ public class AppUserServiceImpl implements UserDetailsService, GeneralService<Ap
     public void remove(Long id) {
 
     }
+
 }
 

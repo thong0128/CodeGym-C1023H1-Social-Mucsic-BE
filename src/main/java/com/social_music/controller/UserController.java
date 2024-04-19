@@ -55,14 +55,26 @@ public class UserController {
     public ResponseEntity<AppUser> createUser(@RequestBody AppUser user){
         return new ResponseEntity<>(userService.save(user), HttpStatus.CREATED);
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<AppUser> userById(@PathVariable Long id){
+    @GetMapping("/users/{id}")
+    public ResponseEntity<AppUser> findUserById(@PathVariable Long id){
         Optional<AppUser> customerOptional = userService.findById(id);
         if (!customerOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         AppUser user = customerOptional.get();
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+    @PutMapping("/users/edit/{id}")
+    public ResponseEntity<AppUser> updateUserProfile(@PathVariable Long id, @RequestBody AppUser appUser) {
+        Optional<AppUser> userOptional = this.userService.findById(id);
+        if (!userOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        AppUser newUser = userOptional.get();
+        newUser.setPassword(appUser.getPassword());
+        newUser.setConfirmPassword(appUser.getConfirmPassword());
+        userService.save(newUser);
+        return new ResponseEntity<>(newUser, HttpStatus.OK);
     }
 
 
