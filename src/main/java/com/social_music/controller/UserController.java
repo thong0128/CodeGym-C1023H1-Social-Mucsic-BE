@@ -64,15 +64,33 @@ public class UserController {
         AppUser user = customerOptional.get();
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
-    @PutMapping("/users/edit/{id}")
+    @PutMapping("/users/update/pass/{id}")
+    public ResponseEntity<AppUser> updateUserPassword(@PathVariable Long id, @RequestBody AppUser appUser) {
+        Optional<AppUser> userOptional = this.userService.findById(id);
+        if (!userOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        AppUser newUser = userOptional.get();
+
+        newUser.setPassword(appUser.getPassword());
+        newUser.setConfirmPassword(appUser.getConfirmPassword());
+        newUser.setOldPassword(appUser.getPassword());
+        userService.save(newUser);
+        return new ResponseEntity<>(newUser, HttpStatus.OK);
+    }
+    @PutMapping("/users/update/infor/{id}")
     public ResponseEntity<AppUser> updateUserProfile(@PathVariable Long id, @RequestBody AppUser appUser) {
         Optional<AppUser> userOptional = this.userService.findById(id);
         if (!userOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         AppUser newUser = userOptional.get();
-        newUser.setPassword(appUser.getPassword());
-        newUser.setConfirmPassword(appUser.getConfirmPassword());
+
+        newUser.setUsername(appUser.getUsername());
+        newUser.setPhoneNumber(appUser.getPhoneNumber());
+        newUser.setAvatar(appUser.getAvatar());
+        newUser.setAddress(appUser.getAddress());
+        newUser.setEmail(appUser.getEmail());
         userService.save(newUser);
         return new ResponseEntity<>(newUser, HttpStatus.OK);
     }
