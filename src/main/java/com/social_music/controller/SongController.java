@@ -31,4 +31,15 @@ public class SongController {
     public ResponseEntity<?> update(@RequestBody Song song) {
         return new ResponseEntity<>(songService.save(song),HttpStatus.OK);
     }
+
+    @GetMapping("/findUserSongs/{id}")
+    public ResponseEntity<Iterable<Song>> findUserSong(@PathVariable Long id) {
+        return new ResponseEntity<>(songService.getSongByUserId(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        songService.remove(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

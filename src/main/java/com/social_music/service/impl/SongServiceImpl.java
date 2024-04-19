@@ -26,11 +26,11 @@ public class SongServiceImpl implements ISongService {
 
     @Override
     public void remove(Long id) {
-
+        songRepo.deleteById(id);
     }
 
     @Override
     public Iterable<Song> getSongByUserId(Long userId) {
-        return null;
+        return songRepo.findSongByAppUserId(userId);
     }
 }

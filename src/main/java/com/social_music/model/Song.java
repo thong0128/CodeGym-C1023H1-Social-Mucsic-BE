@@ -20,4 +20,5 @@ public class Song {
     private SongTypes songTypes;
     @ManyToOne
     private AppUser appUser;
+    private long listen_count;
 }
