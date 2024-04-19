@@ -30,7 +30,9 @@ public class SongTypesServiceImpl implements ISongTypesService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void remove(Long id) {
 
     }
+
+
 }

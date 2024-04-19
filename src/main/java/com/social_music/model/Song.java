@@ -18,4 +18,6 @@ public class Song {
     private String album;
     @ManyToOne
     private SongTypes songTypes;
+    @ManyToOne
+    private AppUser appUser;
 }

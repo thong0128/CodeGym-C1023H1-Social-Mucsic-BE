@@ -23,10 +23,12 @@ public class SongServiceImpl implements ISongService {
     public Song save(Song song) {
         return songRepo.save(song);
     }
+
     @Override
-    public void delete(Long id) {
-        songRepo.deleteById(id);
+    public void remove(Long id) {
+
     }
+
     @Override
     public Iterable<Song> getSongByUserId(Long userId) {
         return null;
