@@ -48,28 +48,19 @@ public class AppUserServiceImpl implements UserDetailsService, GeneralService<Ap
 
     @Override
     public AppUser save(AppUser user) {
-        AppUser appUser = new AppUser();
-        if (user.getId() != null){
-            appUser.setId(user.getId());
-        }
-        if (user.getOldPassword() == null){
-            appUser.setOldPassword(user.getPassword());
-        } else {
-            appUser.setOldPassword(user.getOldPassword());
-        }
-        appUser.setUsername(user.getUsername());
-        appUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        appUser.setConfirmPassword(user.getConfirmPassword());
-        appUser.setPhoneNumber(user.getPhoneNumber());
-        appUser.setAddress(user.getAddress());
-        if (user.getAvatar()!=null){
-            appUser.setAvatar(user.getAvatar());
-        }
-        appUser.setEmail(user.getEmail());
+        return appUserRepo.save(user);
+    }
+    public AppUser saveNewUser(AppUser user){
+        AppUser newUser = new AppUser();
         List<Long> rolesIDs = Arrays.asList(appRoleRepository.findOneByName(RoleType.ROLE_USER.getName()).getId());
         Set<AppRole> roles = appRoleRepository.findAllByIdIn(rolesIDs);
-        appUser.setRoles(roles);
-        return appUserRepo.save(appUser);
+        newUser.setRoles(roles);
+        newUser.setUsername(user.getUsername());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        newUser.setConfirmPassword(user.getConfirmPassword());
+        newUser.setOldPassword(user.getConfirmPassword());
+        newUser.setPhoneNumber(user.getPhoneNumber());
+        return appUserRepo.save(newUser);
     }
 
     @Override

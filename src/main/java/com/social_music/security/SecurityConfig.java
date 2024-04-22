@@ -59,7 +59,7 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
                                 .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-                                .requestMatchers("/login/**").permitAll()
+                                .requestMatchers("/login**").permitAll()
                                 .requestMatchers("/users/**","/songTypes/**","/songs/*").permitAll()
                                 .requestMatchers("/songs/**").hasAnyAuthority("ROLE_USER")
                                 .requestMatchers("/users/**").hasAnyAuthority("ROLE_USER")
