@@ -31,15 +31,15 @@ public class UserController {
     private AppUserServiceImpl userService;
     public static Long current_id;
 
-    @PostMapping("/login")
+    @PostMapping("/users/login")
     public ResponseEntity<?> login(@RequestBody AppUser user) {
         Authentication authentication
-                = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+                = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtService.generateTokenLogin(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        AppUser currentUser = userService.findByUsername(user.getUsername());
-        JwtResponse a = new JwtResponse(currentUser.getId(), jwt, userDetails.getUsername(), userDetails.getUsername(), userDetails.getAuthorities());
+        AppUser currentUser = userService.findByUsername(user.getUserName());
+        JwtResponse a = new JwtResponse(currentUser.getId(), jwt, userDetails.getUsername(), userDetails.getUsername(), currentUser.getAvatar(), userDetails.getAuthorities());
         current_id = currentUser.getId();
         return ResponseEntity.ok(a);
     }
@@ -51,7 +51,7 @@ public class UserController {
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/users/create")
+    @PostMapping("/users/register")
     public ResponseEntity<AppUser> createUser(@RequestBody AppUser user){
         return new ResponseEntity<>(userService.saveNewUser(user), HttpStatus.CREATED);
     }

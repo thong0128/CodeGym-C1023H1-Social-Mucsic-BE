@@ -12,12 +12,12 @@ import java.util.List;
 public class UserPrinciple implements UserDetails {
     @Serial
     private static final long serialVersionUID = 1L;
-    private final String username;
+    private final String userName;
     private final String password;
     private final Collection<? extends GrantedAuthority> roles;
-    public UserPrinciple(String username, String password,
+    public UserPrinciple(String userName, String password,
                          Collection<? extends GrantedAuthority> roles) {
-        this.username = username;
+        this.userName = userName;
         this.password = password;
         this.roles = roles;
     }
@@ -27,7 +27,7 @@ public class UserPrinciple implements UserDetails {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
 
-        return new UserPrinciple(user.getUsername(),
+        return new UserPrinciple(user.getUserName(),
                 user.getPassword(),authorities);
     }
 
@@ -41,7 +41,7 @@ public class UserPrinciple implements UserDetails {
     }
     @Override
     public String getUsername() {
-        return username;
+        return userName;
     }
     @Override
     public boolean isAccountNonExpired() {
