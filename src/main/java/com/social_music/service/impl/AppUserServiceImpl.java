@@ -29,11 +29,11 @@ public class AppUserServiceImpl implements UserDetailsService, GeneralService<Ap
     @Autowired
     private PasswordEncoder passwordEncoder;
     public AppUser findByUsername(String name) {
-        return appUserRepo.findByUsername(name);
+        return appUserRepo.findByUserName(name);
     }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return UserPrinciple.build(appUserRepo.findByUsername(username));
+        return UserPrinciple.build(appUserRepo.findByUserName(username));
     }
 
     @Override
@@ -55,7 +55,7 @@ public class AppUserServiceImpl implements UserDetailsService, GeneralService<Ap
         List<Long> rolesIDs = Arrays.asList(appRoleRepository.findOneByName(RoleType.ROLE_USER.getName()).getId());
         Set<AppRole> roles = appRoleRepository.findAllByIdIn(rolesIDs);
         newUser.setRoles(roles);
-        newUser.setUsername(user.getUsername());
+        newUser.setUserName(user.getUserName());
         newUser.setPassword(passwordEncoder.encode(user.getPassword()));
         newUser.setConfirmPassword(user.getConfirmPassword());
         newUser.setOldPassword(user.getConfirmPassword());
