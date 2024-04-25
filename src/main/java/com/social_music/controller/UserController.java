@@ -12,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -30,6 +31,8 @@ public class UserController {
     @Autowired
     private AppUserServiceImpl userService;
     public static Long current_id;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PostMapping("/users/login")
     public ResponseEntity<?> login(@RequestBody AppUser user) {
@@ -66,13 +69,13 @@ public class UserController {
     }
     @PutMapping("/users/update/pass/{id}")
     public ResponseEntity<AppUser> updateUserPassword(@PathVariable Long id, @RequestBody AppUser appUser) {
-        Optional<AppUser> userOptional = this.userService.findById(id);
-        if (!userOptional.isPresent()) {
+        Optional<AppUser> userOptional = userService.findById(id);
+        if (userOptional.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         AppUser newUser = userOptional.get();
 
-        newUser.setPassword(appUser.getPassword());
+        newUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
         newUser.setConfirmPassword(appUser.getConfirmPassword());
         newUser.setOldPassword(appUser.getPassword());
         userService.save(newUser);

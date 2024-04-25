@@ -59,13 +59,14 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
                                 .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-//                                .requestMatchers("/login**").permitAll()
-//                                .requestMatchers("/users/**","/songTypes/**","/songs/*").permitAll()
-//                                .requestMatchers("/songs/**").hasAnyAuthority("ROLE_USER")
-//                                .requestMatchers("/users/**").hasAnyAuthority("ROLE_USER")
-//                                .requestMatchers(HttpMethod.PUT,"/users/update/pass/**").hasAnyAuthority("ROLE_USER")
-//                                .requestMatchers(HttpMethod.PUT,"/users/update/infor/**").hasAnyAuthority("ROLE_USER")
-                                .requestMatchers("").permitAll()
+                                .requestMatchers("/**").permitAll()
+                                .requestMatchers("/login**").permitAll()
+                                .requestMatchers("/users/**","/songTypes/**","/songs/*").permitAll()
+                                .requestMatchers("/songs/**").hasAnyAuthority("ROLE_USER")
+                                .requestMatchers("/users/**").hasAnyAuthority("ROLE_USER")
+                                .requestMatchers(HttpMethod.PUT,"/users/update/pass/**").hasAnyAuthority("ROLE_USER")
+                                .requestMatchers(HttpMethod.PUT,"/users/update/infor/**").hasAnyAuthority("ROLE_USER")
+                                .requestMatchers("/users/**").permitAll()
 //                        .requestMatchers(HttpMethod.GET,"/api/customers**").authenticated()
 //                        .requestMatchers("/api/customers**").hasAnyAuthority("ROLE_ADMIN")
 //                        .requestMatchers(HttpMethod.PUT,"/api/customers**").hasAnyAuthority("ROLE_ADMIN")
@@ -77,4 +78,5 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
+
 }
