@@ -2,6 +2,10 @@ package com.social_music.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -16,6 +20,8 @@ public class Song {
     private String author;
     private String singer;
     private String album;
+    @CreationTimestamp
+    private Date date;
     @ManyToOne
     private SongTypes songTypes;
     @ManyToOne
