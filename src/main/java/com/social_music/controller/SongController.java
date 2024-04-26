@@ -42,4 +42,19 @@ public class SongController {
         songService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("findSongByTitle/{title}")
+    public ResponseEntity<Iterable<Song>> findSongByTitle(@PathVariable String title) {
+        return new ResponseEntity<>(songService.getSongByTitle(title), HttpStatus.OK);
+    }
+
+    @GetMapping("findSongByAuthor/{author}")
+    public ResponseEntity<Iterable<Song>> findSongByAuthor(@PathVariable String author) {
+        return new ResponseEntity<>(songService.getSongByAuthor(author), HttpStatus.OK);
+    }
+
+    @GetMapping("findSongBySinger/{singer}")
+    public ResponseEntity<Iterable<Song>> findSongBySinger(@PathVariable String singer) {
+        return new ResponseEntity<>(songService.getSongBySinger(singer), HttpStatus.OK);
+    }
 }
