@@ -57,9 +57,13 @@ public class LikeService implements ILikeService {
                 likes.setSong(song);
                 likes.setAppUser(user);
                 likes.setLikeStatus(true);
+                song.setCountLike(song.getCountLike()+1);
+                songRepository.save(song);
                 likeRepository.save(likes);
             } else {
                likeRepository.deleteById(likes1.getId());
+                song.setCountLike(song.getCountLike()>0? song.getCountLike()-1: 0);
+                songRepository.save(song);
             }
 
         return likes1;
