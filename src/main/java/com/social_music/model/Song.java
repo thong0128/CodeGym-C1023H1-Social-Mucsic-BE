@@ -8,7 +8,7 @@ import lombok.Data;
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String title;
     private String description;
     private String img_url;
@@ -16,6 +16,8 @@ public class Song {
     private String author;
     private String singer;
     private String album;
+    private int countLike;
+    private boolean likes;
     @ManyToOne
     private SongTypes songTypes;
     @ManyToOne
