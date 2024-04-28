@@ -14,6 +14,7 @@ import java.util.Optional;
 public class SongController {
     @Autowired
     private SongServiceImpl songService;
+
     @GetMapping()
     public ResponseEntity<Iterable<Song>> findAll() {
         return new ResponseEntity<>(songService.findAll(), HttpStatus.OK);
@@ -56,5 +57,9 @@ public class SongController {
     @GetMapping("findSongBySinger/{singer}")
     public ResponseEntity<Iterable<Song>> findSongBySinger(@PathVariable String singer) {
         return new ResponseEntity<>(songService.getSongBySinger(singer), HttpStatus.OK);
+    }
+    @GetMapping("newSongsList")
+    public ResponseEntity<Iterable<Song>> newSongsList() {
+        return new ResponseEntity<>(songService.getNewSongsList(),HttpStatus.OK);
     }
 }

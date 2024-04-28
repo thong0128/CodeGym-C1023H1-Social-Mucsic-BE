@@ -13,4 +13,6 @@ public interface SongRepo extends CrudRepository<Song, Long> {
     Iterable<Song> findSongByAuthorContaining(String artist);
 
     Iterable<Song> findSongBySingerContaining(String singer);
+
+    Iterable<Song> findAllByOrderByDateDesc();
 }
