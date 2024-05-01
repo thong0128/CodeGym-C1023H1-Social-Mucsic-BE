@@ -12,7 +12,7 @@ import java.util.Date;
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String title;
     private String description;
     private String img_url;
@@ -22,6 +22,8 @@ public class Song {
     private String album;
     @CreationTimestamp
     private Date date;
+    private int countLike;
+    private boolean likes;
     @ManyToOne
     private SongTypes songTypes;
     @ManyToOne
