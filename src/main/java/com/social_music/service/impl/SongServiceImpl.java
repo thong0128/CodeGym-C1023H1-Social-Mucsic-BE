@@ -54,4 +54,8 @@ public class SongServiceImpl implements ISongService {
         return songRepo.findAllByOrderByDateDesc();
     }
 
+    @Override
+    public Iterable<Song> getHotSongsList() {
+        return songRepo.findAllByOrderByListenCountDesc();
+    }
 }

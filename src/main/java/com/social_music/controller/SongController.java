@@ -1,7 +1,6 @@
 package com.social_music.controller;
 
 import com.social_music.model.Song;
-import com.social_music.service.impl.LikeService;
 import com.social_music.service.impl.SongServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +26,14 @@ public class SongController {
     @PostMapping("/user/create")
     public ResponseEntity<?> create(@RequestBody Song song) {
         return new ResponseEntity<>(songService.save(song),HttpStatus.CREATED);
+    }
+
+    @PutMapping("/count/{id}")
+    public ResponseEntity<?> countListen(@PathVariable Long id) {
+        Optional<Song> songOptional = songService.findById(id);
+        Song song = songOptional.get();
+        song.setListenCount(song.getListenCount() + 1);
+        return new ResponseEntity<>(songService.save(song),HttpStatus.OK);
     }
 
     @PutMapping("/user/update")
@@ -62,5 +69,10 @@ public class SongController {
     @GetMapping("newSongsList")
     public ResponseEntity<Iterable<Song>> newSongsList() {
         return new ResponseEntity<>(songService.getNewSongsList(),HttpStatus.OK);
+    }
+
+    @GetMapping("hotSongsList")
+    public ResponseEntity<Iterable<Song>> hotSongsList() {
+        return new ResponseEntity<>(songService.getHotSongsList(),HttpStatus.OK);
     }
 }
