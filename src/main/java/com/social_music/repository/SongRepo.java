@@ -18,4 +18,6 @@ public interface SongRepo extends CrudRepository<Song, Long> {
     Iterable<Song> findAllByOrderByDateDesc();
 
     Iterable<Song> findAllByOrderByListenCountDesc();
+
+    Iterable<Song> findAllByOrderByCountLikeDesc();
 }

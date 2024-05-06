@@ -14,4 +14,6 @@ public interface ISongService extends GeneralService<Song> {
     Iterable<Song> getNewSongsList();
 
     Iterable<Song> getHotSongsList();
+
+    Iterable<Song> getFavoriteSongs();
 }
