@@ -24,7 +24,7 @@ public class PlaylistController {
         return new ResponseEntity<>(playlistService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/songs/{id}")
+    @GetMapping("/song/{id}")
     public ResponseEntity<Iterable<Song>> getPlaylistSongs(@PathVariable long id) {
         return new ResponseEntity<>(playlistSongService.getSongsByPlaylistId(id), HttpStatus.OK);
     }
@@ -44,7 +44,7 @@ public class PlaylistController {
         playlistService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @DeleteMapping("/song/{id}/{sid}")
+    @DeleteMapping("/song/{id}&{sid}")
     public ResponseEntity<?> deletePlayListSong(@PathVariable long id, @PathVariable long sid) {
         playlistSongService.removeSongFromPlaylist(id, sid);
         return new ResponseEntity<>(HttpStatus.OK);
