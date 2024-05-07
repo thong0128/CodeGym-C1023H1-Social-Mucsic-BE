@@ -25,5 +25,12 @@ public class LikeController {
     public ResponseEntity<Boolean> checkLikeByUserIdAndSongId(@PathVariable Long uid, @PathVariable Long sid) {
         return new ResponseEntity<>(likeService.checkLikeByUserId(uid, sid), HttpStatus.OK);
     }
-
+    @GetMapping("/playlist/likes/{uid}/{pid}")
+    public ResponseEntity<Boolean> checkLikeByPlaylistIdAndUserId(@PathVariable Long uid, @PathVariable Long pid) {
+        return new ResponseEntity<>(likeService.checkPlaylistLike(uid, pid), HttpStatus.OK);
+    }
+    @PostMapping("/playlist/likes/{uid}/{pid}")
+    public ResponseEntity<?> likePlaylist(@PathVariable Long uid, @PathVariable Long pid) {
+        return new ResponseEntity<>(likeService.playlistLikeAction(uid, pid), HttpStatus.OK);
+    }
 }

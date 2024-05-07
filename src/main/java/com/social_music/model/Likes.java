@@ -15,4 +15,6 @@ public class Likes {
     @ManyToOne
     private AppUser appUser;
     private boolean likeStatus;
+    @ManyToOne
+    private Playlist playlist;
 }

@@ -21,4 +21,8 @@ public interface LikeRepository extends CrudRepository<Likes, Long> {
     @Query(nativeQuery = true, value = "select  song_id as sid from likes where app_user_id = :id;")
     Iterable<GetSongLikeByUser> findAllSongLikeByUser(@Param("id")Long id);
     void deleteBySongId(Long id);
+
+    boolean existsByAppUserIdAndPlaylistId(Long uid, Long playlistId);
+    void deleteByAppUserIdAndPlaylistId(Long uid, Long playlistId);
+    Likes findLikesByAppUserIdAndPlaylistId(Long uid, Long playlistId);
 }
