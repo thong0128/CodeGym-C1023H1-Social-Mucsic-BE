@@ -6,4 +6,7 @@ import com.social_music.model.Song;
 public interface IPlaylistSongService extends GeneralService<PlaylistSong> {
     Iterable<Song> getSongsByPlaylistId(long playlistId);
     void removeSongFromPlaylist(long playlistId, long songId);
+    PlaylistSong addSongToPll(Long pllId, Long songId);
+
+    boolean existSongInPlayList(Long pllId, Long songId);
 }

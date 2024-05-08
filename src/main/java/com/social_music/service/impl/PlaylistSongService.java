@@ -1,5 +1,6 @@
 package com.social_music.service.impl;
 
+import com.social_music.model.Playlist;
 import com.social_music.model.PlaylistSong;
 import com.social_music.model.Song;
 import com.social_music.repository.PlaylistRepository;
@@ -33,6 +34,21 @@ public class PlaylistSongService implements IPlaylistSongService {
     @Override
     public void removeSongFromPlaylist(long playlistId, long songId) {
         playlistSongRepository.deletePlaylistSong(playlistId, songId);
+    }
+
+    @Override
+    public PlaylistSong addSongToPll(Long pllId, Long songId) {
+        PlaylistSong playlistSong = new PlaylistSong();
+        Optional<Playlist> playList = playlistRepository.findById(pllId);
+        Optional<Song> song = songRepository.findById(songId);
+        playlistSong.setPlaylist(playList.get());
+        playlistSong.setSong(song.get());
+        return playlistSongRepository.save(playlistSong);
+    }
+
+    @Override
+    public boolean existSongInPlayList(Long pllId, Long songId) {
+        return  playlistSongRepository.existsByPlaylistIdAndSongId(pllId, songId);
     }
 
     @Override

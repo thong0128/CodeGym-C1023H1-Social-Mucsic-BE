@@ -18,4 +18,6 @@ public interface PlaylistSongRepository extends CrudRepository<PlaylistSong, Lon
     @Query(nativeQuery = true,value = "delete from playlist_song where playlist_song.playlist_id = :id1 and playlist_song.song_id = :id2")
     void deletePlaylistSong(@Param("id1")Long pid, @Param("id2")Long sid);
 
+    boolean existsByPlaylistIdAndSongId(Long pllId, Long sId);
+
 }

@@ -49,8 +49,13 @@ public class PlaylistController {
         playlistSongService.removeSongFromPlaylist(id, sid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @PostMapping ("/song/create")
-    public ResponseEntity<PlaylistSong> createPlaylistSong(@RequestBody PlaylistSong playlistSong) {
-        return new ResponseEntity<>(playlistSongService.save(playlistSong), HttpStatus.CREATED);
+    @PostMapping ("/song/create/{pllId}/{sId}")
+    public ResponseEntity<PlaylistSong> createPlaylistSong(@PathVariable Long pllId, @PathVariable Long sId) {
+        return new ResponseEntity<>(playlistSongService.addSongToPll(pllId, sId), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/song/check/{pllId}/{sId}")
+    public ResponseEntity<?> checkPlSong (@PathVariable Long pllId, @PathVariable Long sId) {
+        return new ResponseEntity<>(playlistSongService.existSongInPlayList(pllId, sId), HttpStatus.OK);
     }
 }

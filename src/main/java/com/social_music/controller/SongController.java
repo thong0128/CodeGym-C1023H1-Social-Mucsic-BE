@@ -29,6 +29,14 @@ public class SongController {
         return new ResponseEntity<>(songService.save(song),HttpStatus.CREATED);
     }
 
+    @PutMapping("/count/{id}")
+    public ResponseEntity<?> countListen(@PathVariable Long id) {
+        Optional<Song> songOptional = songService.findById(id);
+        Song song = songOptional.get();
+        song.setListenCount(song.getListenCount() + 1);
+        return new ResponseEntity<>(songService.save(song),HttpStatus.OK);
+    }
+
     @PutMapping("/user/update")
     public ResponseEntity<?> update(@RequestBody Song song) {
         return new ResponseEntity<>(songService.save(song),HttpStatus.OK);
