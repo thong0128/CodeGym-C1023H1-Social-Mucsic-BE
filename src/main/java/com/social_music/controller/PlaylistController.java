@@ -58,4 +58,9 @@ public class PlaylistController {
     public ResponseEntity<?> checkPlSong (@PathVariable Long pllId, @PathVariable Long sId) {
         return new ResponseEntity<>(playlistSongService.existSongInPlayList(pllId, sId), HttpStatus.OK);
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@RequestBody Playlist playlist) {
+        return new ResponseEntity<>(playlistService.save(playlist),HttpStatus.OK);
+    }
 }
