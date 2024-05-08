@@ -71,4 +71,12 @@ public class SongController {
     public ResponseEntity<Iterable<Song>> newSongsList() {
         return new ResponseEntity<>(songService.getNewSongsList(),HttpStatus.OK);
     }
+    @GetMapping("hotSongsList")
+    public ResponseEntity<Iterable<Song>> hotSongsList() {
+        return new ResponseEntity<>(songService.getHotSongsList(),HttpStatus.OK);
+    }
+    @GetMapping("favoriteSongs")
+    public ResponseEntity<Iterable<Song>> favoriteSongs() {
+        return new ResponseEntity<>(songService.getFavoriteSongs(),HttpStatus.OK);
+    }
 }
