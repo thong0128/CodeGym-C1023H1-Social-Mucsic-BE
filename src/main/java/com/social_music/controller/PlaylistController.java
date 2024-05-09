@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/playlist")
@@ -22,6 +24,10 @@ public class PlaylistController {
     @GetMapping("")
     public ResponseEntity<Iterable<Playlist>> getAllPlaylist() {
         return new ResponseEntity<>(playlistService.findAll(), HttpStatus.OK);
+    }
+    @GetMapping("/{pid}")
+    public ResponseEntity<Optional<Playlist>> getPlaylistById(@PathVariable Long pid) {
+        return new ResponseEntity<>(playlistService.findById(pid), HttpStatus.OK);
     }
 
     @GetMapping("/song/{id}")
