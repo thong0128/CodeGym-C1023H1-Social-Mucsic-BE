@@ -1,3 +1,4 @@
+
 package com.social_music.controller;
 
 import com.social_music.model.Comment;
@@ -21,9 +22,9 @@ public class CommentController {
         return new ResponseEntity<>(commentService.findCommentBySongId(id), HttpStatus.OK);
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<Comment> create(@RequestBody Comment comment){
-        return new ResponseEntity<>(commentService.save(comment), HttpStatus.CREATED);
+    @PostMapping("/create/{uid}/{sid}")
+    public ResponseEntity<Comment> create(@RequestBody Comment comment, @PathVariable Long uid, @PathVariable Long sid){
+        return new ResponseEntity<>(commentService.saveOrUpdate(comment, uid, sid), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
