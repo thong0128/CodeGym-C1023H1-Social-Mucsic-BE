@@ -37,6 +37,11 @@ public class PlaylistSongService implements IPlaylistSongService {
     }
 
     @Override
+    public void removeBySongId(Long songId) {
+        playlistSongRepository.deleteBySongId(songId);
+    }
+
+    @Override
     public PlaylistSong addSongToPll(Long pllId, Long songId) {
         PlaylistSong playlistSong = new PlaylistSong();
         Optional<Playlist> playList = playlistRepository.findById(pllId);

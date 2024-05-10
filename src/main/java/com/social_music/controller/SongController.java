@@ -1,7 +1,9 @@
 package com.social_music.controller;
 
 import com.social_music.model.Song;
+import com.social_music.repository.PlaylistSongRepository;
 import com.social_music.service.impl.LikeService;
+import com.social_music.service.impl.PlaylistSongService;
 import com.social_music.service.impl.SongServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,9 @@ import java.util.Optional;
 public class SongController {
     @Autowired
     private SongServiceImpl songService;
+
+    @Autowired
+    private PlaylistSongService playlistSongService;
 
     @GetMapping()
     public ResponseEntity<Iterable<Song>> findAll() {
@@ -49,6 +54,7 @@ public class SongController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
+        playlistSongService.removeBySongId(id);
         songService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
