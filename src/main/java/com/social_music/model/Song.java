@@ -22,7 +22,7 @@ public class Song {
     private String album;
     @CreationTimestamp
     private Date date;
-    private int countLike;
+    private int countLike = 0;
     private boolean likes;
     @ManyToOne
     private SongTypes songTypes;

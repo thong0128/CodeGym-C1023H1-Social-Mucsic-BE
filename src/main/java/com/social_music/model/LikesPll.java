@@ -4,14 +4,15 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
+@Table
 @Data
-public class Playlist {
+public class LikesPll {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
+    private Playlist playlist;
+    @ManyToOne
     private AppUser appUser;
-    private String title;
-    private int countLike = 0;
-
+    private boolean likeStatus;
 }

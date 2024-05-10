@@ -5,7 +5,6 @@ import com.social_music.model.Likes;
 import com.social_music.model.Song;
 import com.social_music.repository.AppUserRepository;
 import com.social_music.repository.LikeRepository;
-import com.social_music.repository.PlaylistRepository;
 import com.social_music.repository.SongRepo;
 import com.social_music.service.ILikeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,7 @@ public class LikeService implements ILikeService {
     private SongRepo songRepository;
     @Autowired
     private AppUserRepository userRepository;
-    @Autowired
-    PlaylistRepository playlistRepository;
+
 
     @Override
     public Iterable<Likes> findAll() {
@@ -50,6 +48,7 @@ public class LikeService implements ILikeService {
     public void remove(Long id) {
         likeRepository.deleteById(id);
     }
+
     public Likes saveOrUpdate(Long uid, Long sid) {
         Likes likes = new Likes();
         Song song = songRepository.findSongById(sid);
