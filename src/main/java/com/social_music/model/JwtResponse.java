@@ -2,7 +2,6 @@ package com.social_music.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
-
 import java.util.Collection;
 
 @Data
