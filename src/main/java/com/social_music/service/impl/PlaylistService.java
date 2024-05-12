@@ -26,8 +26,8 @@ public class PlaylistService implements IPlaylistService {
     }
 
     @Override
-    public Iterable<Playlist> getRandomPlaylist() {
-        return playlistRepository.findRandomPlaylist();
+    public Iterable<Playlist> getSuggestPlaylist(Long uId) {
+        return playlistRepository.findSuggestPlaylist(uId);
     }
 
     @Override

@@ -8,5 +8,5 @@ public interface IPlaylistService extends GeneralService<Playlist> {
 
     Iterable<Playlist> getPlaylistsByTitle(String title);
 
-    Iterable<Playlist> getRandomPlaylist();
+    Iterable<Playlist> getSuggestPlaylist(Long uId);
 }

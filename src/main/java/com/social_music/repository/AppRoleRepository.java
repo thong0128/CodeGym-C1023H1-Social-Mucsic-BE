@@ -1,8 +1,5 @@
 package com.social_music.repository;
 
-
-
-
 import com.social_music.model.AppRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

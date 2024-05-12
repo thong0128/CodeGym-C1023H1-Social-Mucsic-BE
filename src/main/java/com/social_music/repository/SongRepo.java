@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SongRepo extends CrudRepository<Song, Long> {
+
     Iterable<Song> findSongByAppUserId(Long appUser_id);
+
     Song findSongById (Long id);
 
     Iterable<Song> findSongByTitleContaining(String title);

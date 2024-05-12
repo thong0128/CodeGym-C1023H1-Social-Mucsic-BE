@@ -26,9 +26,9 @@ public class PlaylistController {
         return new ResponseEntity<>(playlistService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("rd")
-    public ResponseEntity<Iterable<Playlist>> getRandomPlaylist() {
-        return new ResponseEntity<>(playlistService.getRandomPlaylist(), HttpStatus.OK);
+    @GetMapping("suggest/{uId}")
+    public ResponseEntity<Iterable<Playlist>> getSuggestPlaylist(@PathVariable Long uId) {
+        return new ResponseEntity<>(playlistService.getSuggestPlaylist(uId), HttpStatus.OK);
     }
 
 
