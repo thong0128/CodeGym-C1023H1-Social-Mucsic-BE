@@ -25,6 +25,13 @@ public class PlaylistController {
     public ResponseEntity<Iterable<Playlist>> getAllPlaylist() {
         return new ResponseEntity<>(playlistService.findAll(), HttpStatus.OK);
     }
+
+    @GetMapping("rd")
+    public ResponseEntity<Iterable<Playlist>> getRandomPlaylist() {
+        return new ResponseEntity<>(playlistService.getRandomPlaylist(), HttpStatus.OK);
+    }
+
+
     @GetMapping("/{pid}")
     public ResponseEntity<Optional<Playlist>> getPlaylistById(@PathVariable Long pid) {
         return new ResponseEntity<>(playlistService.findById(pid), HttpStatus.OK);
@@ -68,5 +75,10 @@ public class PlaylistController {
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody Playlist playlist) {
         return new ResponseEntity<>(playlistService.save(playlist),HttpStatus.OK);
+    }
+
+    @GetMapping("/findByTitle/{title}")
+    public ResponseEntity<Iterable<Playlist>> findPllByTitle(@PathVariable String title) {
+        return new ResponseEntity<>(playlistService.getPlaylistsByTitle(title), HttpStatus.OK);
     }
 }

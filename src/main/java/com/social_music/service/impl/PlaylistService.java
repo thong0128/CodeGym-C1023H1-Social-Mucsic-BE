@@ -21,6 +21,16 @@ public class PlaylistService implements IPlaylistService {
     }
 
     @Override
+    public Iterable<Playlist> getPlaylistsByTitle(String title) {
+        return playlistRepository.findPlaylistByTitleContaining(title);
+    }
+
+    @Override
+    public Iterable<Playlist> getRandomPlaylist() {
+        return playlistRepository.findRandomPlaylist();
+    }
+
+    @Override
     public Iterable<Playlist> findAll() {
         return playlistRepository.findAll();
     }
