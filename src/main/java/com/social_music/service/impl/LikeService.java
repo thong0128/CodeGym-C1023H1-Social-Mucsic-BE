@@ -21,6 +21,9 @@ public class LikeService implements ILikeService {
     @Autowired
     private AppUserRepository userRepository;
 
+    public LikeService(LikeRepository likeRepo) {
+        this.likeRepository = likeRepo;
+    }
 
     @Override
     public Iterable<Likes> findAll() {

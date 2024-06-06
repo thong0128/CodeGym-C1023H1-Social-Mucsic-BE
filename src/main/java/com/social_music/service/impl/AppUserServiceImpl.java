@@ -28,6 +28,11 @@ public class AppUserServiceImpl implements UserDetailsService, GeneralService<Ap
     AppRoleRepository appRoleRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    public AppUserServiceImpl(AppUserRepository appUserRepo) {
+        this.appUserRepo = appUserRepo;
+    }
+
     public AppUser findByUsername(String name) {
         return appUserRepo.findByUserName(name);
     }

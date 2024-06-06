@@ -15,6 +15,10 @@ public class SongServiceImpl implements ISongService {
     @Autowired
     private LikeRepository likeRepository;
 
+    public SongServiceImpl(SongRepo songRepo) {
+        this.songRepo = songRepo;
+    }
+
     @Override
     public Iterable<Song> findAll() {
         return songRepo.findAll();

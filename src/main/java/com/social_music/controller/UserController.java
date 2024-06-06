@@ -84,17 +84,6 @@ public class UserController {
     }
     @PutMapping("/users/update/infor/{id}")
     public ResponseEntity<AppUser> updateUserProfile(@PathVariable Long id, @RequestBody AppUser appUser) {
-//        Optional<AppUser> userOptional = this.userService.findById(id);
-//        if (!userOptional.isPresent()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        AppUser newUser = userOptional.get();
-//
-//        newUser.setUsername(appUser.getUsername());
-//        newUser.setPhoneNumber(appUser.getPhoneNumber());
-//        newUser.setAvatar(appUser.getAvatar());
-//        newUser.setAddress(appUser.getAddress());
-//        newUser.setEmail(appUser.getEmail());
         userService.save(appUser);
         return new ResponseEntity<>(appUser, HttpStatus.OK);
     }

@@ -15,12 +15,14 @@ public class UserPrinciple implements UserDetails {
     private final String userName;
     private final String password;
     private final Collection<? extends GrantedAuthority> roles;
+
     public UserPrinciple(String userName, String password,
                          Collection<? extends GrantedAuthority> roles) {
         this.userName = userName;
         this.password = password;
         this.roles = roles;
     }
+
     public static UserPrinciple build(AppUser user) {
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (AppRole role : user.getRoles()) {

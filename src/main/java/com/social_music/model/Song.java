@@ -1,7 +1,9 @@
 package com.social_music.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
@@ -9,6 +11,8 @@ import java.util.Date;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,4 +33,9 @@ public class Song {
     @ManyToOne
     private AppUser appUser;
     private Long listenCount = 0L;
+
+    public Song(Long id, String title) {
+        this.id = id;
+        this.title = title;
+    }
 }
